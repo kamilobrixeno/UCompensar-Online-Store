@@ -12,3 +12,16 @@ export interface CartItem {
   product: Product;
   quantity: number;
 }
+
+export type PaymentMethod = 'card' | 'pse';
+
+export interface Order {
+  id: string;
+  username: string;
+  date: string;
+  items: CartItem[];
+  total: number;
+  method: PaymentMethod;
+  /** Descripcion segura del pago (ej. "Tarjeta terminada en 4242"). */
+  paymentDetail: string;
+}

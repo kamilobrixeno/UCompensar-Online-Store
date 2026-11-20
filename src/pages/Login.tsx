@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { IonButton, IonContent, IonHeader, IonInput, IonItem, IonPage, IonText, IonTitle, IonToolbar, IonSpinner } from '@ionic/react';
+import { IonContent, IonPage, IonSpinner } from '@ionic/react';
 import { useAuth } from '../context/AuthContext';
 
 const Login: React.FC = () => {
@@ -28,30 +28,33 @@ const Login: React.FC = () => {
 
   return (
     <IonPage>
-      <IonHeader>
-        <IonToolbar color="primary">
-          <IonTitle>Online Store</IonTitle>
-        </IonToolbar>
-      </IonHeader>
-      <IonContent className="ion-padding">
-        <form onSubmit={submit} data-testid="login-form">
-          <h2>Iniciar sesión</h2>
-          <IonItem>
-            <IonInput label="Usuario" labelPlacement="floating" autocomplete="username" value={username}
-              onIonInput={(e) => setUsername(String(e.detail.value ?? ''))} />
-          </IonItem>
-          <IonItem>
-            <IonInput label="Contraseña" labelPlacement="floating" type="password" autocomplete="current-password" value={password}
-              onIonInput={(e) => setPassword(String(e.detail.value ?? ''))} />
-          </IonItem>
-          {error && <IonText color="danger"><p>{error}</p></IonText>}
-          <IonButton expand="block" type="submit" disabled={busy} className="ion-margin-top">
-            {busy ? <IonSpinner name="dots" /> : 'Entrar'}
-          </IonButton>
-          <IonText color="medium">
-            <p>Cuenta de prueba (FakeStore API): usuario <b>mor_2314</b>, contraseña <b>83r5^_</b></p>
-          </IonText>
-        </form>
+      <IonContent className="ml-content">
+        <div className="ml-login-top">
+          <div className="ml-logo ml-logo--static">
+            <span className="ml-logo__mark">U</span>
+            <span className="ml-logo__text">UCompensar<small>Store</small></span>
+          </div>
+        </div>
+        <div className="ml-login">
+          <form className="ml-card ml-login__card" onSubmit={submit} data-testid="login-form">
+            <h2>Ingresa a tu cuenta</h2>
+            <label className="ml-field">
+              <span>Usuario</span>
+              <input autoComplete="username" value={username} onChange={(e) => setUsername(e.target.value)} />
+            </label>
+            <label className="ml-field">
+              <span>Contraseña</span>
+              <input type="password" autoComplete="current-password" value={password} onChange={(e) => setPassword(e.target.value)} />
+            </label>
+            {error && <p className="ml-error">{error}</p>}
+            <button className="ml-btn ml-btn--block" type="submit" disabled={busy}>
+              {busy ? <IonSpinner name="dots" /> : 'Ingresar'}
+            </button>
+            <p className="ml-muted ml-login__hint">
+              Cuenta de prueba (FakeStore API): usuario <b>mor_2314</b>, contraseña <b>83r5^_</b>
+            </p>
+          </form>
+        </div>
       </IonContent>
     </IonPage>
   );

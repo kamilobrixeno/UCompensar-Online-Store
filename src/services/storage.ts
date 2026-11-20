@@ -23,3 +23,4 @@ export async function removeKey(key: string): Promise<void> {
 }
 
 export const KEYS = { session: 'session', cart: 'cart' } as const;
+export const ordersKey = (username: string) => `orders:${username}`;

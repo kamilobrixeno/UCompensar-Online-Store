@@ -7,6 +7,8 @@ import Login from './pages/Login';
 import Products from './pages/Products';
 import ProductDetail from './pages/ProductDetail';
 import Cart from './pages/Cart';
+import Checkout from './pages/Checkout';
+import Orders from './pages/Orders';
 
 import '@ionic/react/css/core.css';
 import '@ionic/react/css/normalize.css';
@@ -16,6 +18,7 @@ import '@ionic/react/css/padding.css';
 import '@ionic/react/css/flex-utils.css';
 import '@ionic/react/css/display.css';
 import './theme/variables.css';
+import './theme/store.css';
 
 setupIonicReact();
 
@@ -29,6 +32,8 @@ const Routes: React.FC = () => {
       <Route exact path="/products">{session ? <Products /> : <Redirect to="/login" />}</Route>
       <Route exact path="/product/:id">{session ? <ProductDetail /> : <Redirect to="/login" />}</Route>
       <Route exact path="/cart">{session ? <Cart /> : <Redirect to="/login" />}</Route>
+      <Route exact path="/checkout">{session ? <Checkout /> : <Redirect to="/login" />}</Route>
+      <Route exact path="/orders">{session ? <Orders /> : <Redirect to="/login" />}</Route>
       <Route exact path="/"><Redirect to={session ? '/products' : '/login'} /></Route>
     </IonRouterOutlet>
   );
